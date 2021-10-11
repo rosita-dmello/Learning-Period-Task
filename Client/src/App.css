@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+/* General styles, container and body */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 300% 300%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+body{
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  /* background: #7A306C; */
+  font-family: 'Montserrat', 'Roboto', sans-serif;
+  align-items: center;
+}
+/* .stock-img{
+  height: 100%;
+  width: 133.5%;
+  float: right;
+  
+} */
+/* .row {
+  display: flex;
+ 
+}
+
+.column {
+  flex: 50%;
+  overflow: hidden;
+  
+} */
+
+.container {
+  padding: 3%;
+  align-items: center;
+}
+
+h1, h2, h3, h4, ul, li, a, p, input, label, button, div, footer{
+  margin: 0;
+  padding: 0;
+}
+ul{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+  
+}
+
+/* Navbar */
+.nav {
+  background-color: #000 !important;
+  color: white;
+  padding: 1% 2%;
+ 
+}
+.nav-links {
+  float: right;
+  margin-top: 1%;
+  
+}
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+  transition: all .5s;
+}
+.nav-links li{
+display: inline-block;
+margin-left: 20px;
+text-transform: uppercase;
+font-weight: 700;
+font-size: 0.8em;
+
+}
+.nav-link {
+  color: #fff;
+}
+.nav-link:hover {
+  color: #ee7752;
+}
+.brand-name {
+  font-size: 200%;
+  float: left;
+}
+
+
+
+/* Forms */
+
+.form{
+  width: 34%;
+  height: 94%;
+  padding: 3%;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+  border-radius: 3px;
+  background: white;
+  color: black;
+  align-items: center;
+  margin-left: 30%;
+}
+.login-box{
+  padding: 6% 3% 2% 3%;
+}
+.signup-box {
+  padding: 2% 3%;
+}
+.submitButton {
+  margin-top: 5% !important;
+  background-color:#23d5ab !important;
+  height: 50px;
+}
+.gbtn {
+  width: auto !important;
+  margin: 5% 0;
+}
