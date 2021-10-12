@@ -10,11 +10,14 @@ const {requireAuth, checkUser} = require("./middleware/authMiddleware");
 const User = require("./models/User");
 
 const app = express();
+
 require('dotenv').config();
+require('./config/OAuthConfig')(passport);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(passport.initialize());
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
 
 // database connection
@@ -22,78 +25,9 @@ const dbURI = 'mongodb+srv://rosita:test123@cluster0.1b23i.mongodb.net/streaming
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true})
 
 
-passport.use(new GoogleStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "/auth/google/truesic"
-  },
-  async function(accessToken, refreshToken, profile, done) {
-    console.log("Random string");
-    try
-   {await User.findOne(
-            { email: profile.emails[0].value },
-            async (err, user) => {
-              if (err) {
-                console.log(err);
-                return done(err);
-              }
-              if (!user) {
-                const newUser = new User({
-                  googleId: profile.id,
-                  email: profile.emails[0].value,
-                  name: profile.displayName,
-                });
-                await newUser.save();
-                console.log(newUser);
-                return done(err, newUser);
-              }
-              console.log("User exists");
-              return done(err, user)
-  }
-)} 
-catch(err) {
-  console.log(err);
-}
-}));
-
-passport.serializeUser((user, done) => done(null, user.id));
-passport.deserializeUser(async (id, done) => {
-    try {
-      await User.findById(id, (err, user) => {
-        done(err, user);
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  });
-
 
 // Routes
 app.use(authRoutes);
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-app.get('/auth/google/truesic', 
-//  (req,res) => {
-  passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login' }), (req,res) => {
-     try {
-      console.log(req.user);
-      res.redirect("http://localhost:3000/");
-    } catch(err) {
-      console.log(err);
-    }}
-    
-    
- );
-  // function(req, res) {
-  //   console.log("Callback String");
-  //   // Successful authentication, redirect home.
-  //   // res.redirect('http://localhost:3000/'); // full path
-  // });
-app.get("*", checkUser);
-
-
-
 
 
 const PORT = process.env.PORT || 3001;

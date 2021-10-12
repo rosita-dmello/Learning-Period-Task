@@ -31,26 +31,9 @@ body{
   margin: 0;
   font-size: 1.2rem;
   letter-spacing: 1px;
-  /* background: #7A306C; */
-  font-family: 'Montserrat', 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   align-items: center;
 }
-/* .stock-img{
-  height: 100%;
-  width: 133.5%;
-  float: right;
-  
-} */
-/* .row {
-  display: flex;
- 
-}
-
-.column {
-  flex: 50%;
-  overflow: hidden;
-  
-} */
 
 .container {
   padding: 3%;
@@ -103,6 +86,7 @@ font-size: 0.8em;
 .brand-name {
   font-size: 200%;
   float: left;
+  color: #fff;
 }
 
 
@@ -114,7 +98,7 @@ font-size: 0.8em;
   height: 94%;
   padding: 3%;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
-  border-radius: 3px;
+  border-radius: 10px;
   background: white;
   color: black;
   align-items: center;
