@@ -8,7 +8,7 @@ module.exports = (passport) => {
       {
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: '/auth/google/trusic',
+        callbackURL: "/auth/google/trusic",
       },
       (accessToken, refreshToken, profile, done) => {
         try {
@@ -37,7 +37,9 @@ module.exports = (passport) => {
       }
     )
   );
+
   passport.serializeUser((user, done) => done(null, user.id));
+
   passport.deserializeUser((id, done) => {
     try {
       User.findById(id, (err, user) => {
@@ -47,4 +49,5 @@ module.exports = (passport) => {
       console.log(err);
     }
   });
+
 };

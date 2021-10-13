@@ -22,9 +22,14 @@ module.exports.login_post = async (req, res) => {
 
   try {
     const user = await User.login(email, password);
+    if(user.password) {
     const token = createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(200).json({user: user._id});
+    }
+    else if (user.googleId) {
+      res.redirect("http://localhost:3001/auth/google")
+    }
     
   }
   catch (err){
