@@ -47,4 +47,4 @@ module.exports.oauthlogin = passport.authenticate('google', {
   scope: ['profile', 'email']
 });
 
-module.exports.callback =passport.authenticate('google');
+module.exports.callback = passport.authenticate('google');

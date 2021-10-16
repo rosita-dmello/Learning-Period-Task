@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 /* General styles, container and body */
 * {
@@ -89,12 +88,28 @@ font-size: 0.8em;
   color: #fff;
 }
 
+.hamburger {
+    display: none;
+    float: right;
+    
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+}
+
 
 
 /* Forms */
 
 .form{
-  width: 34%;
+  width: 32%;
   height: 94%;
   padding: 3%;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
@@ -102,7 +117,7 @@ font-size: 0.8em;
   background: white;
   color: black;
   align-items: center;
-  margin-left: 30%;
+  margin-left: 31%;
 }
 .login-box{
   padding: 6% 3% 2% 3%;
@@ -118,4 +133,103 @@ font-size: 0.8em;
 .gbtn {
   width: auto !important;
   margin: 5% 0;
+}
+
+
+
+/* media queries */
+@media screen and (max-width: 1024px) {
+  body{
+    background-color : #fff
+  }
+  
+  .form {
+    width: 50%;
+    margin-left: 20%;
+    padding: 5%;
+
+  }
+  .signup-box {
+  padding: 3% 3%;
+}
+
+  .login-box {
+    padding: 10% 3%;
+  }
+  
+}
+@media screen and (max-width: 768px) {
+  
+  .form {
+    width: 80%;
+    margin-left: 5%;
+    padding: 5%;
+
+  }
+  .signup-box {
+  padding: 5% 3%;
+}
+  .login-box {
+    padding: 15% 3%;
+  }
+  .nav-links {
+        position: fixed;
+        left: -100%;
+        /* top: 5rem; */
+        flex-direction: column;
+        background-color: #000;
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 2.5rem 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        margin-top: 2%;
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+  body{
+    background-color : #fff
+  }
+  
+  .form {
+    width: 80%;
+    margin-left: 3%;
+    padding: 7%;
+
+  }
+  .signup-box {
+  padding: 10% 3%;
+}
+
+  .login-box {
+    padding: 20% 3%;
+  }
+  
 }
