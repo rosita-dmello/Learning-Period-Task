@@ -11,6 +11,7 @@ router.post("/login", authController.login_post);
 router.get("/logout", authController.logout_get);
 router.get("/auth/google", authController.oauthlogin);
 router.get("/auth/google/trusic", authController.callback, jwtConfig.storeToken);
-router.get("*", checkUser);
+
+
 
 module.exports = router;
