@@ -14,8 +14,7 @@ module.exports.storeToken = (req,res) => {
     const id = req.user.googleId ? req.user.googleId : req.user._id;
     const token = createToken(id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    Cookies.set('jwt', token, { domain: 'http://localhost:3000' });
-    res.status(201).json({ user: id });
+    res.status(200).redirect("http://localhost:3000/");
     } catch(err) {
       console.log(err);
     }

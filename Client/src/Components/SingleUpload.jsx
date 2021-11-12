@@ -1,15 +1,14 @@
 import React, {useState} from "react";
 import {Box, Button, TextField} from '@mui/material';
 import {singleFileUpload} from "../data/api";
-// import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
-// import 'react-circular-progressbar/dist/styles.css';
+
 
 function SingleUpload(){
     const [singleFile, setSingleFile] = useState("");
     const [uploaded, setUploaded] = useState(false);
     const [songTitle, setSongTitle] = useState("");
     const [artistName, setArtistName] = useState("");
-
+    
     const singleFileChange = (event) => {
         setSingleFile(event.target.files[0]);
     }
@@ -20,12 +19,13 @@ function SingleUpload(){
       setArtistName(event.target.value);
     }
 
-    const uploadSingleFile = async (event) => {
+    const uploadSingleFile = async () => {
         
         const formData = new FormData();
         formData.append("file", singleFile);
         formData.append("title", songTitle);
         formData.append("artist", artistName);
+        console.log(formData);
         await singleFileUpload(formData);
         setUploaded(true);
         console.log(singleFile);
@@ -43,7 +43,7 @@ function SingleUpload(){
           <TextField label="Track Title" variant="outlined" name="trackTitle" margin="dense" fullWidth required onChange={setTitle}/>
           <TextField label="Artist Name" variant="outlined" name="artistName" margin="dense" fullWidth required onChange={setArtist} />
           <label>Select a file: </label>
-            <input type="file" name="file" onChange={singleFileChange}/>
+            <input type="file" name="file" onChange={singleFileChange} accept="audio/mp3,audio/aac,audio/wav,audio/mpeg"/>
           <Button className="submitButton" type="submit" variant="contained" fullWidth onClick = {uploadSingleFile}>
             Upload!
           </Button>

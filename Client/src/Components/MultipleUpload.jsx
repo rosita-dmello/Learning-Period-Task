@@ -26,6 +26,7 @@ function MultipleUpload(){
           formData.append("files", multipleFiles[i]);
         }
         await multipleFilesUpload(formData);
+        
         setUploaded(true);
 
     }
@@ -39,7 +40,7 @@ function MultipleUpload(){
           <TextField label="Album Title" variant="outlined" name="title" margin="dense" fullWidth required onChange={(event) => {setTitle(event.target.value)}}/>
           <TextField label="Artist Name" variant="outlined" name="artistName" margin="dense" fullWidth required onChange={setArtist}/>
           <label for="file">Select all files: </label>
-            <input type="file" name="files" multiple onChange={multipleFileChange}/>
+            <input type="file" name="files" multiple onChange={multipleFileChange} accept="audio/mp3,audio/aac,audio/wav,audio/mpeg"/>
           <Button className="submitButton" type="submit" variant="contained" fullWidth onClick = {uploadMultipleFiles}>
             Upload!
           </Button>
