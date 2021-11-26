@@ -3,13 +3,14 @@ import {Box, Button, TextField} from '@mui/material';
 import GoogleButton from 'react-google-button'
 import {signupPost} from "../data/api";
 import {authenticate} from "../data/authoriseFunctions";
+import { Redirect } from "react-router";
 
 function Register(){
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [phone, setPhone] = useState("");
 const [name, setName] = useState("");
-
+ const [loggedIn, setLoggedIn] = useState(false);
   const emailChange = (event) => {
     setEmail(event.target.value);
   }
@@ -21,9 +22,10 @@ console.log({name, phone, email, password});
         await signupPost({name, phone, email, password});
         console.log("signing up done");
         authenticate();
+        setLoggedIn(true);
     }
   
-    return <Box>
+    return loggedIn ? <Redirect to={{pathname: "/songsDisplay"}}/> : <Box className="user-signup">
       <Box className= "signup-box container">
         <Box className="form">
           <h1> Sign Up </h1> 
@@ -40,6 +42,7 @@ console.log({name, phone, email, password});
     </Box>
   
     </Box>
+    
 }
 
 export default Register;

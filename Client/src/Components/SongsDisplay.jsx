@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from "react";
 import {Box, Button} from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
 import {getSingleFiles, getMultipleFiles} from "../data/api";
+
 
 import ReactJkMusicPlayer from 'react-jinke-music-player'
 import 'react-jinke-music-player/assets/index.css'
@@ -13,27 +16,31 @@ function SongsDisplay(){
     const [singleFiles, setSingleFiles] = useState([]);
     const [name, setName] = useState("");
     const [source, setSource] = useState("");
+    const [singer, setSinger] = useState("");
+
     let audioList = [{
         name: name,
-        musicSrc: source
+        musicSrc: source,
+        singer: singer
     }];
     
-    const setSong = async (event) => {
-        console.log(event.target.value);
-        const requiredFile = singleFiles.find( ({ fileName }) => fileName === event.target.value );
+    const setSong = async (fName) => {
+        console.log(fName);
+        const requiredFile = singleFiles.find( ({ fileName }) => fileName === fName );
         let path = convertString("http://localhost:3001/" + requiredFile.filePath);
         setSource(path);
         setName(requiredFile.songTitle);
-        
+        setSinger(requiredFile.artist);
     }
-    const playAlbum = async(event, album) => {
-        console.log(event.target.value);
+    const playAlbum = async(fName, album) => {
+        console.log(fName);
         console.log(album);
-        const requiredFile = album.files.find( ({ fileName }) => fileName === event.target.value );
+        const requiredFile = album.files.find( ({ fileName }) => fileName === fName );
         console.log(requiredFile);
         let path = convertString("http://localhost:3001/" + requiredFile.filePath);
         setName(requiredFile.fileName);
         setSource(path);
+        setSinger(requiredFile.artist);
         // const list = [];
         // list.push({
         //     name: requiredFile.fileName,
@@ -92,30 +99,40 @@ function SongsDisplay(){
     }, []);
     function Display() {
         return <Box>
-     <Box>
+     <Box className="container singleTracks-area">
       <h1>Single Tracks</h1>
         {singleFiles.map((file) => {
             return <Box className="tracks">
-                <Button key={file._id} className="songName" value={file.fileName} onClick={setSong}>{file.songTitle}</Button>
+                <Box key={file._id} className="songDisplay" value={file.fileName}>
+                <FontAwesomeIcon icon={faPlayCircle} className="play-icon" onClick={() => {setSong(file.fileName)}}/>
+                <h4 className="song-title">{file.songTitle}</h4>
+                <p className="artist-name">{file.artist}</p>
+                </Box>
             </Box>
         })}
         </Box>
         <Box>
+        <Box className="container album-area">
         <h1>Albums</h1>
         {multipleFiles.map((album) => {
         return <Box>
             <Box key={album._id} className="albumTitle">
-                <h2>{album.albumTitle}</h2>
+                <h3>{album.albumTitle}</h3>
             </Box>
             <Box className="tracks">
                 {album.files.map((file) => {
-                    return <Button key={file._id} className="songName" value={file.fileName} onClick={(event) => {playAlbum(event,album)}}>
-                        {file.fileName}
-                    </Button>
+                    return <Box className="tracks">
+                <Box key={file._id} className="songDisplay" value={file.fileName}>
+                <FontAwesomeIcon icon={faPlayCircle} className="play-icon" onClick={() => {playAlbum(file.fileName, album)}}/>
+                <h4 className="song-title">{file.fileName}</h4>
+                <p className="artist-name">{album.artist}</p>
+                </Box>
+            </Box>
                 })}
             </Box>
             </Box>
         })}
+    </Box>
     </Box>
     <ReactJkMusicPlayer
       quietUpdate

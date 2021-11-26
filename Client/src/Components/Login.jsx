@@ -17,16 +17,17 @@ function Login(){
     setPassword(event.target.value);
   }
   const sendLoginRequest = async () => {
-        await loginPost({
+        const token = await loginPost({
           email: email,
           password: password
         });
         console.log("done logging in");
+        console.log(token);
         authenticate();
         setLoggedIn(true);
     }
   
-    return loggedIn ? <Redirect to={{pathname: "/"}}/> : <Box>
+    return loggedIn ? <Redirect to={{pathname: "/songsDisplay"}}/> : <Box className="user-login">
       <Box className= "login-box container">
         <Box className="form">
           <h1> Log In </h1> 

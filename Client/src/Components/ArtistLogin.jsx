@@ -2,11 +2,13 @@ import React, {useState} from "react";
 import {Box, TextField, Button} from '@mui/material';
 import {authenticateArtist} from "../data/authoriseFunctions";
 import {artistLoginPost} from "../data/api";
+import { Redirect } from "react-router";
 
 function ArtistLogin(){
  const [email, setEmail] = useState("");
  const [password, setPassword] = useState("");
-
+  const [loggedIn, setLoggedIn] = useState(false);
+  
   const emailChange = (event) => {
     setEmail(event.target.value);
   }
@@ -17,9 +19,11 @@ function ArtistLogin(){
         await artistLoginPost({email, password});
         console.log("done logging in as artist");
         authenticateArtist();
+        setLoggedIn(true);
+
     }
   
-    return <Box>
+    return loggedIn ? <Redirect to={{pathname: "/songsDisplay"}}/> : <Box className="artist-login">
       <Box className= "login-box container">
         <Box className="form">
           <h1> Log In as an Artist </h1> 
@@ -30,7 +34,13 @@ function ArtistLogin(){
           </Button>
         </Box>
     </Box>
-    </Box>
+    </Box> 
+ 
+    
+    
+    
+    
+    
 }
 
 export default ArtistLogin;

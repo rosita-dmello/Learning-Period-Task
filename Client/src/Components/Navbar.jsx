@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {AppBar, Box, Button} from '@mui/material';
-import Cookies from 'js-cookie'
 
 
 
-console.log(Cookies.get("jwt"));
+
+
 function Navbar(){
   const [isActive, setActive] = useState(false);
   const [isArtist, setIsArtist] = useState("");
@@ -27,7 +27,7 @@ function Navbar(){
   
 return <AppBar position="static" className="nav">
       <nav className="nav shift">
-      <a href="/">  <h1 className="brand-name"> <img src="/navLogo.png" alt="Logo" className="logo" /> Trusic </h1></a>
+      <a href="/">  <h1 className="brand-name"> <img src="/trusic-logo.png" alt="Logo" className="logo" /> Trusic </h1></a>
       <ul className={isActive ? "nav-links active" : "nav-links"}>
       {isAuthenticated === "Yes" ?  <> 
       <li className="nav-item"><a className="nav-link" onClick={closeMenu} href="/logout">Log Out</a></li>

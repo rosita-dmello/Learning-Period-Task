@@ -23,12 +23,13 @@ import 'react-jinke-music-player/assets/index.css'
 import Footer from "./Components/Footer"
 function App() {
 
+
 const [audioList, Display] = SongsDisplay();
   return <main>
   <Navbar/>
   <BrowserRouter>
        <Switch>
-          <Route path="/" component={Home} exact/>
+          <Route path="/" exact> <Home/> </Route>
           <Route path="/login" component={Login}/>
           <Route path="/signup" component={Register}/>
           <Route path="/artistLogin" component={ArtistLogin}/>

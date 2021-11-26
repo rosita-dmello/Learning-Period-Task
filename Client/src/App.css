@@ -12,7 +12,7 @@ body{
   margin: 0;
   font-size: 1.2rem;
   letter-spacing: 1px;
-  font-family: "Lato",'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   align-items: center;
   background-color: #Fff;
 }
@@ -21,8 +21,8 @@ body{
   padding: 3%;
   align-items: center;
 }
-h1 {
-  font-family: "Montserrat", sans-serif;
+.hero h1 {
+  font-family: "Lato", sans-serif;
   font-weight: 900;
   font-size: 3rem;
   line-height: 1.5;
@@ -169,9 +169,9 @@ font-size: 0.8em;
 }
 .logo {
   display: inline-block;
-  width: 8%;
+  width: 9%;
   margin-right: 2%;
-  
+  margin-bottom: -5px;
 }
 
 .bar {
@@ -191,17 +191,20 @@ font-size: 0.8em;
 .form{
   /* width: 32%;
   height: 94%; */
-  padding: 3%;
+  padding: 5%;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
   border-radius: 10px;
-  background: white;
-  color: black;
+  background: #fff;
+  color: #2b0d0d ;
   align-items: center;
   margin-left: 5%;
   
 }
 .login-box{
-  padding: 6% 3% 2% 3%;
+  padding: 5.5% 5% 6% 5%;
+  width: 40%;
+  height: 34%;
+  opacity: 0.9;
 }
 .signup-box {
   padding: 2% 3%;
@@ -214,7 +217,7 @@ font-size: 0.8em;
 }
 .submitButton {
   margin-top: 3% !important;
-  background-color:#EBB2B2 !important;
+  background-color:#2b0d0d !important;
   height: 50px;
   /* color: #2B0D0D !important; */
   font-weight: 700 !important;
@@ -224,20 +227,53 @@ font-size: 0.8em;
   margin: 5% 0;
 }
 
+/* MUSIC PLAYER  */
+.songDisplay {
+  background-color: #000;
+  margin: 1% 0;
+  padding: 1.5%;
+  color: #faf0f0;
+  height: 50px;
+  border-radius: 10px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.212);
+  font-family: "Roboto", sans-serif;
+}
+.songDisplay:hover {
+  background-color: rgba(0, 0, 0, 0.945);
+  transition-delay: 0.1qs;
+}
+.play-icon {
+  float: left;
+  color: #Fff;
+  font-size: 200%;
+  margin: 0.25% 2% 0 1%;
+}
+
+.play-icon:hover  {
+  color: #faf0f0;
+  transition-delay: 0.1s;
+  border-radius: 100%;
+  box-shadow: 1px rgba(255, 255, 255, 0.788);
+}
+
 /* artist pages */
 .artist-signup {
   background-image: url("https://images.unsplash.com/photo-1503683759663-762ec9716627?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; 
   background-size: cover;
 
 }
 .login-button {
   
-  background-color:#e7aa82 !important;
+  background-color:#000000 !important;
   height: 50px;
-  /* color: # !important; */
   font-weight: 700 !important;
 
+}
+.artist-login {
+  background-image: url("https://images.unsplash.com/photo-1584980959228-79409574bef2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1192&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .or-text {
   display: flex;
@@ -255,6 +291,18 @@ font-size: 0.8em;
 }
 .or-text:after {
   margin-left: 10px
+}
+
+/* user pages */
+.user-signup {
+  background-image: url("https://images.unsplash.com/photo-1541667558913-5510fb3c7bd9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.user-login {
+  background-image: url("https://images.unsplash.com/photo-1605286111295-c17ad8fbeee3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 /* Footer */
 .footer {
@@ -281,26 +329,9 @@ font-size: 0.8em;
   .login-box {
     padding: 10% 3%;
   }
-  
-}
-@media screen and (max-width: 768px) {
-  
-  .form {
-    width: 80%;
-    margin-left: 5%;
-    padding: 5%;
-
-  }
-  .signup-box {
-  padding: 5% 3%;
-}
-  .login-box {
-    padding: 15% 3%;
-  }
-  .nav-links {
+   .nav-links {
         position: fixed;
         left: -100%;
-        /* top: 5rem; */
         flex-direction: column;
         background-color: #000;
         width: 100%;
@@ -335,6 +366,25 @@ font-size: 0.8em;
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
+    
+  
+  
+}
+@media screen and (max-width: 768px) {
+  
+  .form {
+    width: 80%;
+    margin-left: 5%;
+    padding: 5%;
+
+  }
+  .signup-box {
+  padding: 5% 3%;
+}
+  .login-box {
+    padding: 15% 3%;
+  }
+ 
     
 }
 

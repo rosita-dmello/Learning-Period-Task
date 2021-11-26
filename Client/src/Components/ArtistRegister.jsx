@@ -2,13 +2,14 @@ import React, {useState} from "react";
 import {Box, Button, TextField} from '@mui/material';
 import {artistSignupPost} from "../data/api";
 import {authenticateArtist} from "../data/authoriseFunctions";
+import { Redirect } from "react-router";
 
 function ArtistRegister(){
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [phone, setPhone] = useState("");
 const [name, setName] = useState("");
-
+const [loggedIn, setLoggedIn] = useState(false);
   const emailChange = (event) => {
     setEmail(event.target.value);
   }
@@ -20,9 +21,10 @@ console.log({name, phone, email, password});
         await artistSignupPost({name, phone, email, password});
         console.log("signing up as artist done");
         authenticateArtist();
+        setLoggedIn(true);
     }
   
-    return <Box className="artist-signup">
+    return loggedIn ? <Redirect to={{pathname: "/songsDisplay"}}/> : <Box className="artist-signup">
       <Box className= "container">
         <Box className="form signup-box" >
           <h2> Sign Up to Upload your Music with us! </h2> 

@@ -12,9 +12,10 @@ const createToken = (id) => {
 module.exports.storeToken = (req,res) => {
     try {
     const id = req.user.googleId ? req.user.googleId : req.user._id;
+    const user = req.user;
     const token = createToken(id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(200).redirect("http://localhost:3000/");
+    res.status(200).json({user, token});
     } catch(err) {
       console.log(err);
     }

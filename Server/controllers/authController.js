@@ -12,7 +12,7 @@ module.exports.signup_post = async (req, res) => {
     const user = await User.create({ name, phone, email, password, role });
     const token = await createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(201).json({ user: user._id });
+    res.status(201).send(user);
     } catch(err) {
       console.log(err);
     }
@@ -36,10 +36,13 @@ module.exports.login_post = async (req, res) => {
     if(user.password) {
     const token = createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(200).send(token);
+    res.status(200).json({user, token});
     }
     else if (user.googleId) {
       res.json({message: "Use Google sign in"});
+    }
+    else {
+      res.json({user});
     }
     
   }

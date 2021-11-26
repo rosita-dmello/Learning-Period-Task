@@ -6,17 +6,19 @@ function Upload(){
 
   
     return  <Box className= "container">
-        <form className="form" >
+        <Box className="form upload-box" >
           <h1> Hi! Do you want to upload a Single track or an Album? </h1>
-          <Button className="submitButton" variant="contained" fullWidth>
           <a href="/singleUpload">
-            Single
-          </a> </Button>
           <Button className="submitButton" variant="contained" fullWidth>
-          <a href="/multipleUpload">
+            Single
+          </Button>
+           </a>
+           <a href="/multipleUpload">
+          <Button className="submitButton" variant="contained" fullWidth>
             Album
-          </a> </Button>
-        </form>
+           </Button>
+           </a>
+        </Box>
     </Box>
   
     

@@ -12,11 +12,12 @@ export const signupPost = async (data) => {
         throw err;
     }
 }
-export const loginPost = async (data) => {
+export const loginPost = async (formData) => {
     try {
-       const receivedData = await axios.post(apiUrl + "login", data);
-        
+       const {data} = await axios.post(apiUrl + "login", formData);
+        console.log(data);
         localStorage.setItem('isAuthorised', 'Yes');
+        return data;
     } 
     catch (err) {
         throw err;
