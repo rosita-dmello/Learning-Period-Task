@@ -5,6 +5,7 @@
 * {
   margin: 0;
   padding: 0;
+  
 }
 
 
@@ -15,6 +16,8 @@ body{
   font-family: 'Roboto', sans-serif;
   align-items: center;
   background-color: #Fff;
+  margin-bottom: 5rem;
+  
 }
 
 .container {
@@ -226,31 +229,40 @@ font-size: 0.8em;
   width: auto !important;
   margin: 5% 0;
 }
+.error {
+  color: red;
+  font-size: 12px;
+}
 
 /* MUSIC PLAYER  */
-.songDisplay {
+.music-player {
   background-color: #000;
+  border-top: 1px solid #faf0f0;
+  color: #faf0f0;
+}
+.songDisplay {
+  background-color: #faf0f0;
   margin: 1% 0;
   padding: 1.5%;
-  color: #faf0f0;
+  color: #000;
   height: 50px;
   border-radius: 10px;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.212);
+  box-shadow: 1px 2px 3px #faf0f0;
   font-family: "Roboto", sans-serif;
 }
 .songDisplay:hover {
-  background-color: rgba(0, 0, 0, 0.945);
+  background-color: rgba(255, 249, 249, 0.959);
   transition-delay: 0.1qs;
 }
 .play-icon {
   float: left;
-  color: #Fff;
+  color: #000;
   font-size: 200%;
   margin: 0.25% 2% 0 1%;
 }
 
 .play-icon:hover  {
-  color: #faf0f0;
+  color: rgba(0, 0, 0, 0.884);
   transition-delay: 0.1s;
   border-radius: 100%;
   box-shadow: 1px rgba(255, 255, 255, 0.788);
@@ -304,11 +316,18 @@ font-size: 0.8em;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 /* Footer */
 .footer {
-  padding: 3%;
   background-color: #000;
   color: #fbfbfb77;
+  margin-top: 1rem;
+  padding: 2rem;
+  font-size: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 /* media queries */
 @media screen and (max-width: 1024px) {

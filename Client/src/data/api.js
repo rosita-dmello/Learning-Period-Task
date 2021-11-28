@@ -2,11 +2,11 @@ import axios from "axios";
 
 const apiUrl = "http://localhost:3001/";
 
-export const signupPost = async (data) => {
+export const signupPost = async (formData) => {
     try {
-        await axios.post(apiUrl + "signup", data);
-        console.log("done signing up");
-        localStorage.setItem('isAuthorised', 'Yes');
+        const {data} = await axios.post(apiUrl + "signup", formData);
+        
+        return data;
     } 
     catch (err) {
         throw err;
@@ -16,28 +16,40 @@ export const loginPost = async (formData) => {
     try {
        const {data} = await axios.post(apiUrl + "login", formData);
         console.log(data);
-        localStorage.setItem('isAuthorised', 'Yes');
+        
         return data;
     } 
     catch (err) {
         throw err;
     }
 }
-
-export const artistSignupPost = async (data) => {
+export const oAuthGet = async () => {
     try {
-        await axios.post(apiUrl + "artistSignup", data);
-        console.log("done signing up as artist");
-        localStorage.setItem('isAuthorised', 'Yes');
+       await axios.get(apiUrl + "auth/google");
+        // console.log(data);
+        // localStorage.setItem('isAuthorised', 'Yes');
+        // return data;
     } 
     catch (err) {
         throw err;
     }
 }
-export const artistLoginPost = async (data) => {
+export const artistSignupPost = async (formData) => {
     try {
-       const receivedData = await axios.post(apiUrl + "artistLogin", data);
-        localStorage.setItem('isAuthorised', 'Yes');
+        const {data} = await axios.post(apiUrl + "artistSignup", formData);
+        console.log(data);
+        
+        return data;
+    } 
+    catch (err) {
+        throw err;
+    }
+}
+export const artistLoginPost = async (formData) => {
+    try {
+       const {data} = await axios.post(apiUrl + "artistLogin", formData);
+       console.log(data);
+        return data;
     } 
     catch (err) {
         throw err;

@@ -5,11 +5,11 @@ import {AppBar, Box, Button} from '@mui/material';
 
 
 
-function Navbar(){
+function Navbar(props){
   const [isActive, setActive] = useState(false);
-  const [isArtist, setIsArtist] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState("");
-  const[loggedIn, setLoggedIn] = useState(false);
+  
+
+  
   const toggleClass = () => {
     setActive(!isActive);
   }
@@ -19,21 +19,23 @@ function Navbar(){
   
   
   useEffect(() => {
-  setIsAuthenticated(localStorage.getItem('isAuthenticated'));
-  setIsArtist(localStorage.getItem('isArtist'));
-  setLoggedIn(() => isAuthenticated === "Yes" ? true : false);
+  // setIsAuthenticated(localStorage.getItem('isAuthenticated'));
+  // setIsArtist(localStorage.getItem('isArtist'));
+  
   }, [])
-  console.log(isAuthenticated);
+  console.log(props.loggedIn);
   
 return <AppBar position="static" className="nav">
       <nav className="nav shift">
       <a href="/">  <h1 className="brand-name"> <img src="/trusic-logo.png" alt="Logo" className="logo" /> Trusic </h1></a>
+
       <ul className={isActive ? "nav-links active" : "nav-links"}>
-      {isAuthenticated === "Yes" ?  <> 
-      <li className="nav-item"><a className="nav-link" onClick={closeMenu} href="/logout">Log Out</a></li>
-      {isArtist === "Yes" ? <li className="nav-item"><a className="nav-link" onClick={closeMenu} href="/upload">Upload</a></li> :
+
+      {props.loggedIn || localStorage.getItem('isAuthenticated') === "Yes" ?  <> 
+      {props.isArtist || localStorage.getItem('isArtist') === "Yes" ? <li className="nav-item"><a className="nav-link" onClick={closeMenu} href="/upload">Upload</a></li> :
       null }
       <li className="nav-item"><a className="nav-link" onClick={closeMenu} href="/displaySongs">Music Player</a></li>
+      <li className="nav-item"><a className="nav-link" onClick={closeMenu} href="/logout">Log Out</a></li>
       </> : <> 
       <li className="nav-item"><a className="nav-link" onClick={closeMenu} href="/artistSignup">Artist Space</a></li>
       <li className="nav-item"><a className="nav-link" onClick={closeMenu} href="/login">Log in</a></li>

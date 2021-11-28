@@ -4,12 +4,12 @@ import {artistSignupPost} from "../data/api";
 import {authenticateArtist} from "../data/authoriseFunctions";
 import { Redirect } from "react-router";
 
-function ArtistRegister(){
+function ArtistRegister(props){
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [phone, setPhone] = useState("");
 const [name, setName] = useState("");
-const [loggedIn, setLoggedIn] = useState(false);
+
   const emailChange = (event) => {
     setEmail(event.target.value);
   }
@@ -21,10 +21,11 @@ console.log({name, phone, email, password});
         await artistSignupPost({name, phone, email, password});
         console.log("signing up as artist done");
         authenticateArtist();
-        setLoggedIn(true);
+        props.setLoggedIn(true);
+        props.setIsArtist(true);
     }
   
-    return loggedIn ? <Redirect to={{pathname: "/songsDisplay"}}/> : <Box className="artist-signup">
+    return props.loggedIn ? <Redirect to={{pathname: "/displaySongs"}}/> : <Box className="artist-signup">
       <Box className= "container">
         <Box className="form signup-box" >
           <h2> Sign Up to Upload your Music with us! </h2> 

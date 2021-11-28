@@ -43,8 +43,8 @@ userSchema.pre('save', async function(next) {
 // Static method to login user
 userSchema.statics.login = async function(email, password){
   const user = await this.findOne({email});
-  if(user.password) {
-  if (user) {
+  if(user) {
+    if(user.password) {
     const auth = await bcrypt.compare(password, user.password);
     if (auth){
       return user;
@@ -53,15 +53,17 @@ userSchema.statics.login = async function(email, password){
       success: false,
       message: "Incorrect password"
     }
-  }
-   return {
-      success: false,
-      message: "Incorrect email"
-    }
+   
 }
   if(user.googleId){
   return user;
 }
+}
+return {
+      success: false,
+      message: "Incorrect email"
+    }
+  
 }
 const User = mongoose.model('user', userSchema);
 

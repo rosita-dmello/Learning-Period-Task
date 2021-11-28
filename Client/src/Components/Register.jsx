@@ -5,12 +5,12 @@ import {signupPost} from "../data/api";
 import {authenticate} from "../data/authoriseFunctions";
 import { Redirect } from "react-router";
 
-function Register(){
+function Register(props){
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [phone, setPhone] = useState("");
 const [name, setName] = useState("");
- const [loggedIn, setLoggedIn] = useState(false);
+
   const emailChange = (event) => {
     setEmail(event.target.value);
   }
@@ -22,10 +22,10 @@ console.log({name, phone, email, password});
         await signupPost({name, phone, email, password});
         console.log("signing up done");
         authenticate();
-        setLoggedIn(true);
+        props.setLoggedIn(true);
     }
   
-    return loggedIn ? <Redirect to={{pathname: "/songsDisplay"}}/> : <Box className="user-signup">
+    return props.loggedIn ? <Redirect to={{pathname: "/displaySongs"}}/> : <Box className="user-signup">
       <Box className= "signup-box container">
         <Box className="form">
           <h1> Sign Up </h1> 

@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import "./App.css";
@@ -24,21 +24,24 @@ import Footer from "./Components/Footer"
 function App() {
 
 
-const [audioList, Display] = SongsDisplay();
-  return <main>
-  <Navbar/>
+  const [audioList, Display] = SongsDisplay();
+   const [loggedIn, setLoggedIn] = useState(false);
+   const [isArtist, setIsArtist] = useState(false);
+
+  return <main className="fill-window">
+  <Navbar loggedIn={loggedIn} isArtist={isArtist}/>
   <BrowserRouter>
        <Switch>
           <Route path="/" exact> <Home/> </Route>
-          <Route path="/login" component={Login}/>
-          <Route path="/signup" component={Register}/>
-          <Route path="/artistLogin" component={ArtistLogin}/>
-          <Route path="/artistSignup" component={ArtistRegister}/>
+          <Route path="/login"> <Login setLoggedIn = {setLoggedIn} loggedIn={loggedIn}/> </Route>
+          <Route path="/signup"><Register setLoggedIn = {setLoggedIn} loggedIn={loggedIn}/></Route>
+          <Route path="/artistLogin"><ArtistLogin setLoggedIn = {setLoggedIn} loggedIn={loggedIn} setIsArtist={setIsArtist}/></Route>
+          <Route path="/artistSignup"><ArtistRegister setLoggedIn = {setLoggedIn} loggedIn={loggedIn} setIsArtist={setIsArtist}/></Route>
           <ArtistOnly path="/upload"><Upload/></ArtistOnly>
           <ArtistOnly path="/singleUpload"><SingleUpload/></ArtistOnly>
           <ArtistOnly path="/multipleUpload"><MultipleUpload/></ArtistOnly>
           <ProtectedRoute path="/displaySongs"><Display/></ProtectedRoute>
-          <Route path="/logout" component={Logout}/>
+          <Route path="/logout"><Logout setLoggedIn = {setLoggedIn}/></Route>
     
         </Switch>
   </BrowserRouter>

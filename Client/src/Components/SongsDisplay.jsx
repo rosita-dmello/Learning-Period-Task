@@ -98,7 +98,7 @@ function SongsDisplay(){
         
     }, []);
     function Display() {
-        return <Box>
+        return <Box className="music-player">
      <Box className="container singleTracks-area">
       <h1>Single Tracks</h1>
         {singleFiles.map((file) => {

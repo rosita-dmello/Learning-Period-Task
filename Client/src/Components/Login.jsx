@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import {Box, TextField, Button} from '@mui/material';
 import GoogleButton from 'react-google-button'
-import {loginPost} from "../data/api";
+import {loginPost, oAuthGet} from "../data/api";
 import {authenticate} from "../data/authoriseFunctions";
 import { Redirect } from "react-router";
 
-function Login(){
+function Login(props){
  const [email, setEmail] = useState("");
  const [password, setPassword] = useState("");
- const [loggedIn, setLoggedIn] = useState(false);
+ const [error, setError] = useState({emailError: "", passwordError: ""});
 
   const emailChange = (event) => {
     setEmail(event.target.value);
@@ -17,24 +17,37 @@ function Login(){
     setPassword(event.target.value);
   }
   const sendLoginRequest = async () => {
-        const token = await loginPost({
+        const receivedData = await loginPost({
           email: email,
           password: password
         });
         console.log("done logging in");
-        console.log(token);
-        authenticate();
-        setLoggedIn(true);
+        if (receivedData.user.success !== false) {
+          authenticate();
+          props.setLoggedIn(true);
+        }
+        else {
+          console.log(receivedData.user.message);
+          if (receivedData.user.message === "Incorrect email") {
+            setError({emailError: "No user found with this email"})
+          }
+          if (receivedData.user.message === "Incorrect password") {
+            setError({passwordError: "Incorrect Password. Please try again."})
+          }
+        }
+        
     }
   
-    return loggedIn ? <Redirect to={{pathname: "/songsDisplay"}}/> : <Box className="user-login">
+    return props.loggedIn ? <Redirect to={{pathname: "/displaySongs"}}/> : <Box className="user-login">
       <Box className= "login-box container">
         <Box className="form">
           <h1> Log In </h1> 
-          <a href="http://localhost:3001/auth/google"><GoogleButton className="gbtn" label='Log in with Google'/></a>
+          <GoogleButton className="gbtn" label='Log in with Google' onClick={oAuthGet}/>
           <hr/>
           <TextField label="Email" variant="outlined" name="email" margin="dense" fullWidth required onChange={emailChange}/>
+          <p className="error">{error.emailError}</p>
           <TextField label="Password" variant="outlined" name="password" margin="dense" type="password" fullWidth required onChange={passwordChange}/>
+          <p className="error">{error.passwordError}</p>
           <Button className="submitButton" variant="contained" fullWidth onClick={sendLoginRequest}>
             Log in
           </Button>

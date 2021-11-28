@@ -12,7 +12,7 @@ module.exports.signup_post = async (req, res) => {
     const user = await User.create({ name, phone, email, password, role });
     const token = await createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(201).send(user);
+    res.status(200).json({user, token});
     } catch(err) {
       console.log(err);
     }
@@ -24,7 +24,7 @@ module.exports.artistSignup_post = async (req, res) => {
     const user = await User.create({ name, phone, email, password, role});
     const token = await createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(200).json({token});
+    res.status(200).json({user, token});
     } catch(err) {
       console.log(err);
     }
@@ -58,10 +58,13 @@ module.exports.artistLogin_post = async (req, res) => {
     if(user.password && user.role === "artist") {
     const token = createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(200).json({token});
+    res.status(200).json({user, token});
+    }
+    else if(user.password && user.role !== "artist") {
+      res.json({message: "Not an artist"});
     }
     else {
-      res.json({message: "Not an artist"});
+      res.json({user});
     }
     
   }
