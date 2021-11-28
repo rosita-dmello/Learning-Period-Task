@@ -124,7 +124,7 @@ function SongsDisplay(){
                     return <Box className="tracks">
                 <Box key={file._id} className="songDisplay" value={file.fileName}>
                 <FontAwesomeIcon icon={faPlayCircle} className="play-icon" onClick={() => {playAlbum(file.fileName, album)}}/>
-                <h4 className="song-title">{file.fileName}</h4>
+                <h4 className="song-title">{file.fileName.slice(0,40) + "..."}</h4>
                 <p className="artist-name">{album.artist}</p>
                 </Box>
             </Box>
@@ -143,9 +143,10 @@ function SongsDisplay(){
       autoHiddenCover
       spaceBar
       toggleMode = {false}
-      showMiniProcessBar = "true"
+      showMiniProcessBar = {true}
       showDownload = {false}
       showThemeSwitch = {false}
+      responsive={false}
     />
 
     </Box>

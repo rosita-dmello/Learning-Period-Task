@@ -26,8 +26,7 @@ console.log({name, phone, email, password});
     }
   
     return props.loggedIn ? <Redirect to={{pathname: "/displaySongs"}}/> : <Box className="user-signup">
-      <Box className= "signup-box container">
-        <Box className="form">
+      <Box className= "form signup-box">
           <h1> Sign Up </h1> 
           <a href="http://localhost:3001/auth/google"><GoogleButton className="gbtn" label='Sign up with Google'/></a>
           <hr/>
@@ -38,7 +37,7 @@ console.log({name, phone, email, password});
           <Button className="submitButton" onClick={sendSignupRequest} variant="contained" fullWidth>
             Register
           </Button>
-        </Box>
+        
     </Box>
   
     </Box>

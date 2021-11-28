@@ -39,7 +39,7 @@ function Login(props){
     }
   
     return props.loggedIn ? <Redirect to={{pathname: "/displaySongs"}}/> : <Box className="user-login">
-      <Box className= "login-box container">
+      <Box className= "login-box">
         <Box className="form">
           <h1> Log In </h1> 
           <GoogleButton className="gbtn" label='Log in with Google' onClick={oAuthGet}/>

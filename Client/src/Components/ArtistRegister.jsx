@@ -26,9 +26,9 @@ console.log({name, phone, email, password});
     }
   
     return props.loggedIn ? <Redirect to={{pathname: "/displaySongs"}}/> : <Box className="artist-signup">
-      <Box className= "container">
+      <Box>
         <Box className="form signup-box" >
-          <h2> Sign Up to Upload your Music with us! </h2> 
+          <h2> Upload your Music with us! </h2> 
           <TextField id="name" label="Full Name" variant="outlined" name="name" margin="dense" fullWidth required value={name} onChange={(event) => {setName(event.target.value);}}/>
           <TextField id="phone" type="tel" label="Phone Number" variant="outlined" name="phone" margin="dense" fullWidth required value={phone} onChange={(event) => {setPhone(event.target.value);}}/>
           <TextField id="email" label="Email" variant="outlined" name="email" margin="dense" fullWidth required value={email} onChange={emailChange}/>
