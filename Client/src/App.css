@@ -295,6 +295,29 @@ nav ul li a:before {
 .or-text:after {
   margin-left: 10px;
 }
+/* Upload pages */
+.uploadOptions {
+  display: inline-block;
+  border-radius: 10px;
+  box-shadow: 1px 2px 3px #faf0f0;
+  background-color: rgb(255, 255, 255);
+  border: 1px #2b0d0d solid;
+  padding: 8%;
+  margin: 2%;
+  color: #2b0d0d;
+}
+.uploadOptions:hover {
+  transform: scale(1.01);
+  transition-delay: 0.1s;
+}
+.upload-box {
+  text-align: center;
+  border: 1px #2b0d0d solid;
+  background-color: #000;
+  padding: 2% 0 2% 0;
+  color: #ebb2b2;
+  border-radius: 10px;
+}
 
 /* user pages */
 .user-signup {
@@ -386,6 +409,9 @@ nav ul li a:before {
   }
 }
 @media screen and (max-width: 768px) {
+  .container-home {
+    padding:10%;
+  }
   .form {
     width: 80%;
     margin-left: 5%;
@@ -398,12 +424,27 @@ nav ul li a:before {
     padding: 17% 0;
     width: 100%;
   }
+  .songDisplay {
+    box-shadow: none;
+    font-size: 85%;
+    padding-top: 3%;
+    margin-top: 7px;
+  }
+  .play-icon {
+    font-size: 250%;
+  }
+   .column {
+  float: none;
+  width: 100%;
+  margin-bottom: 15%;
 }
+}
+
 @media screen and (max-width: 480px) {
   body {
     background-color: #fbfbfb;
   }
-
+ 
   .form {
     width: 80%;
     padding: 7%;
@@ -424,7 +465,7 @@ nav ul li a:before {
   }
   .songDisplay {
     box-shadow: none;
-    font-size: 85%;
+    font-size: 75%;
     padding-top: 3%;
   }
 

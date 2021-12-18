@@ -15,6 +15,7 @@ module.exports.storeToken = (req,res) => {
     const user = req.user;
     const token = createToken(id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+    // res.redirect("http://localhost:5000")
     res.status(200).json({user, token});
     } catch(err) {
       console.log(err);

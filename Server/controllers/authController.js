@@ -81,8 +81,11 @@ module.exports.logout_get = (req,res) => {
   // res.redirect("http://localhost:3000/");
 }
 
-module.exports.oauthlogin = passport.authenticate('google', {
-  scope: ['profile', 'email']
+module.exports.oauthlogin = passport.authenticate("google", {
+  scope: ["profile", "email"],
 });
 
-module.exports.callback = passport.authenticate('google');
+module.exports.callback = passport.authenticate("google", {
+  successRedirect: "http://localhost:5000/displaySongs",
+  failureRedirect: "http://localhost:5000/login"
+});

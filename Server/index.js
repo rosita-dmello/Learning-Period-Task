@@ -22,7 +22,7 @@ require('./config/OAuthConfig')(passport);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({ credentials: true, origin: 'http://localhost:5000' }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(cookieParser());
 
@@ -40,7 +40,7 @@ app.use(fileRoutes.routes);
 
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Box, Button} from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
-
+import {checkUser} from "../data/api";
 import {getSingleFiles, getMultipleFiles} from "../data/api";
 
 
@@ -97,6 +97,14 @@ function SongsDisplay(){
         
         
     }, []);
+    
+     useEffect(() => {
+       async function callme() {
+         const response = await checkUser();
+         console.log(response, "String from login");
+       }
+       callme();
+     }, []);
     function Display() {
         return <Box className="music-player">
      <Box className="container singleTracks-area">

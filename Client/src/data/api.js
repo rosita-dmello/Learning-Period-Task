@@ -26,10 +26,21 @@ export const loginPost = async (formData) => {
 export const oAuthGet = async () => {
     try {
        await axios.get(apiUrl + "auth/google");
-        // console.log(data);
-        // localStorage.setItem('isAuthorised', 'Yes');
+        localStorage.setItem('isAuthorised', 'Yes');
+        // await axios.get(apiUrl + "auth/google");
+        // console.log(data, "Done");
         // return data;
     } 
+    catch (err) {
+        throw err;
+    }
+}
+export const checkUser = async() => {
+    try {
+        const response = await axios.get("http://localhost:3001/auth/login/success");
+        console.log(response);
+        return response;
+    }
     catch (err) {
         throw err;
     }
