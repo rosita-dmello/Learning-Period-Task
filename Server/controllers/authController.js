@@ -86,6 +86,5 @@ module.exports.oauthlogin = passport.authenticate("google", {
 });
 
 module.exports.callback = passport.authenticate("google", {
-  successRedirect: "http://localhost:5000/displaySongs",
-  failureRedirect: "http://localhost:5000/login"
-});
+    failureRedirect: "http://localhost:3000/login"
+  });

@@ -40,7 +40,7 @@ function App() {
           <ArtistOnly path="/upload"><Upload/></ArtistOnly>
           <ArtistOnly path="/singleUpload"><SingleUpload/></ArtistOnly>
           <ArtistOnly path="/multipleUpload"><MultipleUpload/></ArtistOnly>
-          <ProtectedRoute path="/displaySongs"><Display/></ProtectedRoute>
+          <Route path="/displaySongs"><Display/></Route>
           <Route path="/logout"><Logout setLoggedIn = {setLoggedIn}/></Route>
     
         </Switch>

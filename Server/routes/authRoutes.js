@@ -13,17 +13,9 @@ router.post("/artistLogin", authController.artistLogin_post);
 router.get("/logout", authController.logout_get);
 router.get("/auth/google", authController.oauthlogin);
 router.get("/auth/google/trusic", authController.callback, jwtConfig.storeToken);
-router.get("/auth/login/success", (req, res) => {
-  if (req.user) {
-    res.json({
-      message: "User Authenticated",
-      user: req.user,
-    });
-  } else
-    res.json({
-      message: "User Not Authenticated",
-      user: null,
-    });
+router.get("/getUser", function(req, res) {
+  const user = req.app.get("user");
+  res.json(user);
 });
 
 

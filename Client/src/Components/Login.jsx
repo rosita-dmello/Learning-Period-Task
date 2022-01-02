@@ -11,10 +11,6 @@ function Login(props){
  const [password, setPassword] = useState("");
  const [error, setError] = useState({emailError: "", passwordError: ""});
 
- const responseGoogle = (response) => {
-   console.log(response);
- };
-
   const emailChange = (event) => {
     setEmail(event.target.value);
   }
@@ -51,20 +47,9 @@ function Login(props){
         <Box className="login-box">
           <Box className="form">
             <h1> Log In </h1>
-            <GoogleLogin
-              clientId="528399711394-h2hv2d0vv41jd6hm63l16h64si0k4ucv.apps.googleusercontent.com"
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
-            {/* <GoogleButton className="gbtn" label='Log in with Google' onClick={() => {
-            const newWindow = window.open("http://localhost:3001/auth/google", "_self");
-            if(newWindow.closed) {
-              console.log("Logged in");
-            }
-            }
-            }/> */}
+            <a href="http://localhost:3001/auth/google">
+            <GoogleButton className="gbtn" label="Log In with Google" />
+            </a>
             <hr />
             <TextField
               label="Email"

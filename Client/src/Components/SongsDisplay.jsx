@@ -2,9 +2,9 @@ import React, {useState, useEffect} from "react";
 import {Box, Button} from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
-import {checkUser} from "../data/api";
-import {getSingleFiles, getMultipleFiles} from "../data/api";
-
+// import {checkUser} from "../data/api";
+import {getSingleFiles, getMultipleFiles, getUser} from "../data/api";
+import {authenticate} from "../data/authoriseFunctions";
 
 import ReactJkMusicPlayer from 'react-jinke-music-player'
 import 'react-jinke-music-player/assets/index.css'
@@ -89,22 +89,30 @@ function SongsDisplay(){
             console.log(err);
         }
     }
+    const receiveUser = async() => {
+        try {
+            const receivedData = await getUser();
+
+            if (receivedData._id) {
+                authenticate();
+            }
+            else {
+                console.log(receivedData);
+            }
+        }
+        catch(err) {
+            console.log(err);
+        }
+    }
 
     useEffect(() => {
         getSingleFilesList();
         getMultipleFilesList();
-       
+        receiveUser();
         
         
     }, []);
     
-     useEffect(() => {
-       async function callme() {
-         const response = await checkUser();
-         console.log(response, "String from login");
-       }
-       callme();
-     }, []);
     function Display() {
         return <Box className="music-player">
      <Box className="container singleTracks-area">
