@@ -9,15 +9,16 @@ const createToken = (id) => {
   });
 }
 
+// Store token in a cookie, send data and redirect the user to dashboard
 module.exports.storeToken = (req,res) => {
     try {
-    // console.log(req.user);
+   
     const id = req.user.googleId ? req.user.googleId : req.user._id;
     const user = req.user;
     const token = createToken(id);
-    // res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
     req.app.set("user", user);
-    if (req.user.googleId) {
+    if (req.user.googleId || req.user.oAuthUser !== false) {
       return res.redirect("http://localhost:3000/displaySongs");
     } else {
     res.status(200).json({user, token});

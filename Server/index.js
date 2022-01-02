@@ -10,7 +10,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const authRoutes = require("./routes/authRoutes");
 const fileRoutes = require("./routes/fileUploadRoutes");
-const {requireAuth, checkUser} = require("./middleware/authMiddleware");
+
 
 const User = require("./models/User");
 
@@ -45,7 +45,3 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-
-
-//doubt
-// Why is the jwtconfig middleware not working for non oauth authentication?

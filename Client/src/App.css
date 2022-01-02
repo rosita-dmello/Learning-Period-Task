@@ -335,10 +335,10 @@ nav ul li a:before {
 /* Footer */
 .footer {
   background-color: #000;
-  color: #fbfbfb77;
+  color: #fbfbfb77 ;
+  position: fixed;
   padding: 2rem;
   font-size: 1rem;
-  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;

@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import {Box, Button} from '@mui/material';
+import {Box} from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
-// import {checkUser} from "../data/api";
+
 import {getSingleFiles, getMultipleFiles, getUser} from "../data/api";
 import {authenticate} from "../data/authoriseFunctions";
 
@@ -10,7 +10,7 @@ import ReactJkMusicPlayer from 'react-jinke-music-player'
 import 'react-jinke-music-player/assets/index.css'
 
 
-function SongsDisplay(){
+function SongsDisplay(props){
     
     const [multipleFiles, setMultipleFiles] = useState([]);
     const [singleFiles, setSingleFiles] = useState([]);
@@ -41,21 +41,6 @@ function SongsDisplay(){
         setName(requiredFile.fileName);
         setSource(path);
         setSinger(requiredFile.artist);
-        // const list = [];
-        // list.push({
-        //     name: requiredFile.fileName,
-        //     musicSrc: path
-        // })
-        // album.files.forEach((file) => {
-        //     path = convertString("http://localhost:3001/" + file.filePath);
-        //     list.push({
-        //     name: file.fileName,
-        //     musicSrc: path
-        // })
-        // })
-        // audioList = list;
-        
-        
     }
     
      
@@ -69,11 +54,7 @@ function SongsDisplay(){
         try {
             const filesList = await getSingleFiles();
             setSingleFiles(filesList);
-            // setName(filesList[0].songTitle);
-            // let path = "http://localhost:3001/" + filesList[0].filePath;
-            // path = path.replace(/\\/g, "/");
-            // path = path.replace(/ /g, "%20");
-            // setSource(path);
+         
         }
         catch (err) {
             console.log(err);
@@ -95,6 +76,7 @@ function SongsDisplay(){
 
             if (receivedData._id) {
                 authenticate();
+                props.setLoggedIn(true);
             }
             else {
                 console.log(receivedData);

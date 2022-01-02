@@ -1,6 +1,8 @@
 const SingleFile = require("../models/singleFile");
 const MultipleFiles = require("../models/multipleFiles");
 
+
+// Upload a Single Track
 const singleFileUpload = async (req, res, next) => {
 
     try {
@@ -22,6 +24,8 @@ const singleFileUpload = async (req, res, next) => {
     }
 }
 
+
+// Upload an Album
 const multipleFilesUpload = async (req, res, next) => {
     try {
         let filesArray = [];
@@ -50,6 +54,7 @@ const multipleFilesUpload = async (req, res, next) => {
     }
 }
 
+// Retrieve all Single Tracks
 const getAllSingleFiles = async (req, res, next) => {
     try {
         const files = await SingleFile.find();
@@ -58,6 +63,8 @@ const getAllSingleFiles = async (req, res, next) => {
         res.status(400).send(err.message);
     }
 }
+
+// Retrieve All Albums
 const getAllMultipleFiles = async (req, res, next) => {
     try{
         const files = await MultipleFiles.find();
@@ -67,6 +74,7 @@ const getAllMultipleFiles = async (req, res, next) => {
     }
 }
 
+// Format the size of the File
 const fileSizeFormatter = (bytes, decimal) => {
     if(bytes === 0){
         return '0 Bytes';

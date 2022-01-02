@@ -4,7 +4,6 @@ import React, {useState} from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import "./App.css";
-// import protectRoutes from "./Components/protectRoutes";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Navbar from "./Components/Navbar";
@@ -18,7 +17,6 @@ import ArtistLogin from "./Components/ArtistLogin";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import ArtistOnly from "./Components/ArtistOnly"
 import Logout from "./Components/Logout";
-import ReactJkMusicPlayer from 'react-jinke-music-player'
 import 'react-jinke-music-player/assets/index.css'
 import Footer from "./Components/Footer"
 function App() {
@@ -28,27 +26,56 @@ function App() {
    const [loggedIn, setLoggedIn] = useState(false);
    const [isArtist, setIsArtist] = useState(false);
 
-  return <main className="fill-window">
-  <Navbar loggedIn={loggedIn} isArtist={isArtist}/>
-  <BrowserRouter>
-       <Switch>
-          <Route path="/" exact> <Home/> </Route>
-          <Route path="/login"> <Login setLoggedIn = {setLoggedIn} loggedIn={loggedIn}/> </Route>
-          <Route path="/signup"><Register setLoggedIn = {setLoggedIn} loggedIn={loggedIn}/></Route>
-          <Route path="/artistLogin"><ArtistLogin setLoggedIn = {setLoggedIn} loggedIn={loggedIn} setIsArtist={setIsArtist}/></Route>
-          <Route path="/artistSignup"><ArtistRegister setLoggedIn = {setLoggedIn} loggedIn={loggedIn} setIsArtist={setIsArtist}/></Route>
-          <ArtistOnly path="/upload"><Upload/></ArtistOnly>
-          <ArtistOnly path="/singleUpload"><SingleUpload/></ArtistOnly>
-          <ArtistOnly path="/multipleUpload"><MultipleUpload/></ArtistOnly>
-          <Route path="/displaySongs"><Display/></Route>
-          <Route path="/logout"><Logout setLoggedIn = {setLoggedIn}/></Route>
-    
+  return (
+    <main className="fill-window">
+      <Navbar loggedIn={loggedIn} isArtist={isArtist} />
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact>
+            {" "}
+            <Home />{" "}
+          </Route>
+          <Route path="/login">
+            {" "}
+            <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />{" "}
+          </Route>
+          <Route path="/signup">
+            <Register setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
+          </Route>
+          <Route path="/artistLogin">
+            <ArtistLogin
+              setLoggedIn={setLoggedIn}
+              loggedIn={loggedIn}
+              setIsArtist={setIsArtist}
+            />
+          </Route>
+          <Route path="/artistSignup">
+            <ArtistRegister
+              setLoggedIn={setLoggedIn}
+              loggedIn={loggedIn}
+              setIsArtist={setIsArtist}
+            />
+          </Route>
+          <ArtistOnly path="/upload">
+            <Upload />
+          </ArtistOnly>
+          <ArtistOnly path="/singleUpload">
+            <SingleUpload />
+          </ArtistOnly>
+          <ArtistOnly path="/multipleUpload">
+            <MultipleUpload />
+          </ArtistOnly>
+          <ProtectedRoute path="/displaySongs" setLoggedIn={setLoggedIn}>
+            <Display />
+          </ProtectedRoute>
+          <Route path="/logout">
+            <Logout setLoggedIn={setLoggedIn} />
+          </Route>
         </Switch>
-  </BrowserRouter>
-  <Footer/>
-
-  
-  </main>
+      </BrowserRouter>
+      <Footer />
+    </main>
+  );
    
 }
 

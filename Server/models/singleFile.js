@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// Schema for Tracks
 const singleFileSchema = new Schema({
     fileName: {
         type: String,

@@ -3,6 +3,7 @@ const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const findOrCreate = require('mongoose-findorcreate');
 
+// Schema for a user
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -26,12 +27,13 @@ const userSchema = new mongoose.Schema({
     // validate: [isStrongPassword, "Weak Password"]
   },
   googleId: String,
-  role: String
+  role: String,
+  oAuthUser: Boolean
 });
 
 userSchema.plugin(findOrCreate);
 
-// fire a function before doc saved to db
+// fire a function to encrypt the password before doc saved to db
 userSchema.pre('save', async function(next) {
   if (this.password) {
   const salt = await bcrypt.genSalt();

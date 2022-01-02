@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, } from "react";
 import {Box, TextField, Button} from '@mui/material';
 import GoogleButton from 'react-google-button'
-import {loginPost, oAuthGet, checkUser} from "../data/api";
+import {loginPost} from "../data/api";
 import {authenticate} from "../data/authoriseFunctions";
 import { Redirect } from "react-router";
-import GoogleLogin from "react-google-login";
 
 function Login(props){
  const [email, setEmail] = useState("");

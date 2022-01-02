@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// Schema for Albums
 const multipleFilesSchema = new Schema({
     albumTitle: {
         type: String,
